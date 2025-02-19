@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { IPost } from '../../interfaces/ipost.interface';
+import { validateImageUrl } from '../../lib/validate-img-url';
 
 @Component({
   selector: 'app-form',
@@ -22,7 +23,7 @@ export class FormComponent {
       {
         title: new FormControl('', [Validators.required]),
         body: new FormControl('', [Validators.required]),
-        img: new FormControl('', [Validators.required]),
+        img: new FormControl('', [Validators.required, validateImageUrl]),
         date: new FormControl('', [Validators.required]),
       },
       []
@@ -31,18 +32,27 @@ export class FormComponent {
   @Output() postEnviar: EventEmitter<IPost> = new EventEmitter();
 
   cargarDatos() {
-    if (!this.noticiaForm.valid) {
-      this.errorText = 'Faltan campos por rellenar';
+    if (!this.noticiaForm.get('title')?.valid) {
+      this.errorText = 'Falta añadir un titulo';
       return;
     }
-    if (!this.noticiaForm.value.img.startsWith('http')) {
-      this.errorText = 'La imagen no tiene un formato http valido';
-      return
+    if (!this.noticiaForm.get('body')?.valid) {
+      this.errorText = 'Falta añadir un contenido';
+      return;
     }
+    if (!this.noticiaForm.get('img')?.valid) {
+      this.errorText = 'Formato http no valido para la imagen';
+      return;
+    }
+    if (!this.noticiaForm.get('date')?.valid) {
+      this.errorText = 'Falta seleccionar una fecha';
+      return;
+    }
+
     this.errorText = '';
     this.noticiaForm.value.date = new Date(this.noticiaForm.value.date);
     this.postEnviar.emit(this.noticiaForm.value);
 
-    this.noticiaForm.reset()
+    this.noticiaForm.reset();
   }
 }
