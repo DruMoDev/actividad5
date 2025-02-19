@@ -5,13 +5,8 @@ import { IPost } from '../../interfaces/ipost.interface';
   selector: 'app-posts-list',
   imports: [],
   templateUrl: './posts-list.component.html',
-  styleUrl: './posts-list.component.css'
+  styleUrl: './posts-list.component.css',
 })
 export class PostsListComponent {
-  @Input() postLists: IPost[] = []
-
-  ngOnInit() {
-    console.log(this.postLists);
-
-  }
+  @Input() postLists: IPost[] = [];
 }

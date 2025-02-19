@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormComponent } from '../form/form.component';
 import { IPost } from '../../interfaces/ipost.interface';
-import { PostsListComponent } from "../posts-list/posts-list.component";
+import { PostsListComponent } from '../posts-list/posts-list.component';
 
 @Component({
   selector: 'app-blog',
@@ -24,4 +24,8 @@ export class BlogComponent {
       date: new Date('2023-10-02'),
     },
   ];
+
+  recogerPost(event: IPost) {
+    this.postsList = [...this.postsList, event];
+  }
 }
