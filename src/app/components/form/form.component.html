@@ -1,0 +1,51 @@
+<div class="flex flex-col gap-5 bg-slate-300 h-full p-20">
+  <form [formGroup]="noticiaForm" (ngSubmit)="cargarDatos()">
+    <h2 class="text-4xl font-semibold mb-7">Añade una noticia nueva</h2>
+    <div class="flex flex-col gap-5">
+      <label class="text-xl font-medium flex flex-col gap-1">
+        Titulo:
+        <input
+          type="text"
+          placeholder="Titulo de la noticia"
+          class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
+          formControlName="titulo"
+        />
+      </label>
+
+      <label class="text-xl font-medium flex flex-col gap-1">
+        Contenido:
+        <textarea
+          placeholder="Contenido de la noticia"
+          class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
+          formControlName="contenido"
+        ></textarea>
+      </label>
+
+      <label class="text-xl font-medium flex flex-col gap-1">
+        Url Imagen:
+        <input
+          type="text"
+          placeholder="https://images.unsplash.com/..."
+          class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
+          formControlName="imagen"
+        />
+      </label>
+
+      <label class="text-xl font-medium flex flex-col gap-1">
+        Fecha:
+        <input
+          type="date"
+          placeholder="Titulo de la noticia"
+          class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
+          formControlName="fecha"
+        />
+      </label>
+      <button
+        type="submit"
+        class="px-14 py-3 bg-blue-500 rounded-lg hover:bg-blue-600 text-white font-semibold mx-auto text-lg uppercase cursor-pointer"
+      >
+        Publicar
+      </button>
+    </div>
+  </form>
+</div>
