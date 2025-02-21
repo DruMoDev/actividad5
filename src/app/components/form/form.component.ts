@@ -7,10 +7,11 @@ import {
 } from '@angular/forms';
 import { IPost } from '../../interfaces/ipost.interface';
 import { validateImageUrl } from '../../lib/validate-img-url';
+import { ErrorMessageComponent } from "../error-message/error-message.component";
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ErrorMessageComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
@@ -21,7 +22,10 @@ export class FormComponent {
   constructor() {
     this.noticiaForm = new FormGroup(
       {
-        title: new FormControl('', [Validators.required]),
+        title: new FormControl('', [
+          Validators.required,
+          Validators.minLength(3),
+        ]),
         body: new FormControl('', [Validators.required]),
         img: new FormControl('', [Validators.required, validateImageUrl]),
         date: new FormControl('', [Validators.required]),
@@ -54,5 +58,13 @@ export class FormComponent {
     this.postEnviar.emit(this.noticiaForm.value);
 
     this.noticiaForm.reset();
+  }
+
+  // Funcion para validar los campos del formulario
+  checkControl(controlName: string, errorName: string): boolean | undefined {
+    return (
+      this.noticiaForm.get(controlName)?.hasError(errorName) &&
+      this.noticiaForm.get(controlName)?.touched
+    );
   }
 }

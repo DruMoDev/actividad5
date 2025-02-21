@@ -9,52 +9,78 @@
     <p class="font-semibold text-red-500 text-lg mb-2">*{{ errorText }}</p>
     }
     <div class="flex flex-col gap-5">
-      <label class="text-xl font-medium flex flex-col gap-1">
-        Titulo:
-        <input
-          type="text"
-          required
-          placeholder="Titulo de la noticia"
-          class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
-          formControlName="title"
+      <div class="space-y-1">
+        <label class="text-xl font-medium flex flex-col gap-1">
+          Titulo:
+          <input
+            type="text"
+            required
+            placeholder="Titulo de la noticia"
+            class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
+            formControlName="title"
+          />
+        </label>
+        @if (checkControl("title", "required")) {
+        <app-error-message error="El campo es obligatorio." />
+        } @if (checkControl("title", "minlength")) {
+        <app-error-message
+          error="El titulo tiene que tener al menos 3 caracteres."
         />
-      </label>
+        }
+      </div>
 
-      <label class="text-xl font-medium flex flex-col gap-1">
-        Contenido:
-        <textarea
-          required
-          placeholder="Contenido de la noticia"
-          class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
-          formControlName="body"
-        ></textarea>
-      </label>
+      <div class="space-y-1">
+        <label class="text-xl font-medium flex flex-col gap-1">
+          Contenido:
+          <textarea
+            required
+            placeholder="Contenido de la noticia"
+            class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
+            formControlName="body"
+          ></textarea>
+        </label>
+        @if (checkControl("body", "required")) {
+        <app-error-message error="El campo es obligatorio." />
+        }
+      </div>
 
-      <label class="text-xl font-medium flex flex-col gap-1">
-        Url Imagen:
-        <input
-          type="url"
-          placeholder="https://images.unsplash.com/..."
-          class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
-          formControlName="img"
-        />
-      </label>
+      <div class="space-y-1">
+        <label class="text-xl font-medium flex flex-col gap-1">
+          Url Imagen:
+          <input
+            type="url"
+            placeholder="https://images.unsplash.com/..."
+            class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
+            formControlName="img"
+          />
+        </label>
+        @if (checkControl("img", "required")) {
+        <app-error-message error="El campo es obligatorio." />
+        } @if (checkControl("img", "valid")) {
+        <app-error-message error="Formato http no valido para la imagen." />
+        }
+      </div>
 
-      <label class="text-xl font-medium flex flex-col gap-1">
-        Fecha:
-        <input
-          type="date"
-          placeholder="Titulo de la noticia"
-          class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
-          formControlName="date"
-        />
-      </label>
-      <button
+      <div class="space-y-1">
+        <label class="text-xl font-medium flex flex-col gap-1">
+          Fecha:
+          <input
+            type="date"
+            placeholder="Titulo de la noticia"
+            class="bg-white border border-slate-400 rounded-lg py-2 px-3 w-full font-normal text-base shadow"
+            formControlName="date"
+          />
+        </label>
+        @if (checkControl("date", "required")) {
+        <app-error-message error="El campo es obligatorio." />
+        }
+      </div>
+
+      <input
         type="submit"
         class="px-14 py-3 bg-blue-500 rounded-lg hover:bg-blue-600 text-white font-semibold mx-auto text-lg uppercase cursor-pointer disabled:opacity-15"
-      >
-        Publicar
-      </button>
+        value="Publicar"
+      />
     </div>
   </form>
 </section>

@@ -1,0 +1,14 @@
+/* Cuando el input sea invalido, y HAYA SIDO TOCADO */
+input.ng-invalid.ng-touched {
+  border-bottom: 2px solid tomato;
+}
+input.ng-valid.ng-touched {
+  border-bottom: 2px solid green;
+}
+
+textarea.ng-invalid.ng-touched {
+  border-bottom: 2px solid tomato;
+}
+textarea.ng-valid.ng-touched {
+  border-bottom: 2px solid green;
+}
